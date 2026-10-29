@@ -1,0 +1,71 @@
+name: Preview post (dry run)
+
+# Generates a full post (research, writing, fact-check, slides) WITHOUT publishing it, and saves the
+# slides + caption to the `preview` branch for review. Runs by hand, or when triggers/preview.txt changes.
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Force a topic (optional)"
+        type: string
+        required: false
+  push:
+    paths:
+      - triggers/preview.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preview-post
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+
+      - name: Generate preview
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          IN_TOPIC: ${{ inputs.topic }}
+        run: |
+          TOPIC="$IN_TOPIC"
+          if [ -z "$TOPIC" ] && [ -f triggers/preview.txt ]; then
+            TOPIC=$(grep -m1 '^topic:' triggers/preview.txt | sed 's/^topic:[[:space:]]*//')
+          fi
+          ARGS=(--preview)
+          if [ -n "$TOPIC" ]; then ARGS+=(--topic "$TOPIC"); fi
+          python -m bot.main "${ARGS[@]}"
+
+      - name: Report failure
+        if: failure()
+        run: echo "::error title=Preview failed::See the 'Generate preview' step log"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: preview-${{ github.run_id }}
+          path: out/
+          retention-days: 14
+          if-no-files-found: ignore

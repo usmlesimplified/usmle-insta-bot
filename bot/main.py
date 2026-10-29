@@ -27,6 +27,8 @@ HISTORY = DATA_DIR / "history.json"
 def parse_args(argv=None):
     p = argparse.ArgumentParser(description="USMLE Step 1 Instagram autopilot")
     p.add_argument("--dry-run", action="store_true", help="do not upload or publish")
+    p.add_argument("--preview", action="store_true",
+                   help="dry run that also saves slides + caption to the repo's `preview` branch (nothing is posted)")
     p.add_argument("--sample", action="store_true", help="use samples/sample_post.json instead of calling Claude")
     p.add_argument("--topic", default=None, help="force today's topic")
     p.add_argument("--date", default=None, help="pretend today is YYYY-MM-DD (testing)")
@@ -51,6 +53,8 @@ def run(argv=None) -> int:
 
     history = load_history(HISTORY)
     already = posted_on(history, today)
+    if args.preview:
+        args.dry_run = True
     if already and not args.force and not args.dry_run:
         log.info("Already posted today (%s: %s). Nothing to do.", already.get("title"), already.get("permalink"))
         return 0
@@ -127,6 +131,14 @@ def run(argv=None) -> int:
     if llm:
         log.info("Claude usage: %s", llm.usage)
 
+    if args.preview:
+        from .hosting import GitHubImageHost
+        host = GitHubImageHost(cfg.github_repository, cfg.github_token, "preview")
+        extra = [out / n for n in ("caption.txt", "post.json", "review.json", "brief.json") if (out / n).exists()]
+        files = list(paths) + ([story_path] if story_path else []) + extra
+        host.publish_files(files, f"preview/{today.isoformat()}")
+        print(f"::notice title=Preview ready::{post.get('title')} - {len(paths)} slides saved to the preview branch")
+
     if args.dry_run:
         log.info("DRY RUN complete. Files in %s", out)
         print(f"\n--- CAPTION ({len(caption)} chars) ---\n{caption}\n")
@@ -184,6 +196,8 @@ def main():
         sys.exit(run())
     except Exception as e:
         logging.getLogger("bot").error("RUN FAILED: %s", e)
+        msg = " ".join(str(e).split())[:900]
+        print(f"::error title=Bot run failed::{type(e).__name__}: {msg}")
         raise
 
 
