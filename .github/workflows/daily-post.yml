@@ -1,0 +1,90 @@
+name: Daily Instagram post
+
+on:
+  schedule:
+    # 13:47 UTC = 6:47 PM Pakistan time = morning in the US. Change to taste (cron is always UTC).
+    - cron: "47 13 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (generate + render only, do not publish)"
+        type: boolean
+        default: false
+      topic:
+        description: "Force a topic for today (optional)"
+        type: string
+        required: false
+      force:
+        description: "Post even if today's post already went out"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # to save data/history.json and host images on the media branch
+
+concurrency:
+  group: daily-instagram-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+
+      - name: Research, write, fact-check, render and publish
+        env:
+          # Uses your Claude subscription (token from `claude setup-token`). No API billing.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Optional fallback: only used if CLAUDE_CODE_OAUTH_TOKEN is not set.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          IN_DRY_RUN: ${{ inputs.dry_run }}
+          IN_TOPIC: ${{ inputs.topic }}
+          IN_FORCE: ${{ inputs.force }}
+        run: |
+          ARGS=()
+          if [ "$IN_DRY_RUN" = "true" ]; then ARGS+=(--dry-run); fi
+          if [ "$IN_FORCE" = "true" ]; then ARGS+=(--force); fi
+          if [ -n "$IN_TOPIC" ]; then ARGS+=(--topic "$IN_TOPIC"); fi
+          python -m bot.main "${ARGS[@]}"
+
+      - name: Save posting history
+        if: success()
+        run: |
+          git config user.name "insta-bot"
+          git config user.email "insta-bot@users.noreply.github.com"
+          git add data/history.json
+          if ! git diff --cached --quiet; then
+            git commit -m "history: post for $(TZ=Asia/Karachi date +%F)"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
+
+      - name: Keep a copy of what was generated (slides, caption, research, fact-check log)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-${{ github.run_id }}
+          path: out/
+          retention-days: 30
+          if-no-files-found: ignore

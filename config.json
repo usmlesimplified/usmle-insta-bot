@@ -1,0 +1,37 @@
+{
+  "handle": "@usmle.simplified",
+  "brand_name": "USMLE Simplified",
+  "tutor_name": "Saadi",
+  "timezone": "Asia/Karachi",
+
+  "claude_model": "claude-sonnet-5-5",
+  "claude_code_model": "sonnet",
+  "research_max_searches": 6,
+  "factcheck_max_searches": 5,
+
+  "graph_api_version": "v26.0",
+  "post_story": true,
+  "mark_ai_generated": false,
+
+  "topic_cooldown_days": 150,
+  "candidates_per_day": 8,
+
+  "anchor_hashtags": ["#usmlestep1", "#usmle"],
+  "dm_keyword": "STEP1",
+  "cta_follow_line": "Follow for daily Step 1 high-yield",
+  "cta_mentoring_line": "DM \"STEP1\" for 1:1 Step 1 mentoring",
+  "caption_disclaimer": "Educational content for USMLE prep. Not medical advice.",
+
+  "colors": {
+    "navy": "#0E2442",
+    "navy_soft": "#1B3A63",
+    "gold": "#F2B33D",
+    "cream": "#F8F6F1",
+    "ink": "#1A2433",
+    "muted": "#6B7686",
+    "coral": "#D9472F",
+    "mint": "#1F9E7E",
+    "row_alt": "#EDF1F7",
+    "line": "#D8DEE8"
+  }
+}

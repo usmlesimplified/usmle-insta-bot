@@ -1,0 +1,94 @@
+{
+  "title": "Protein Synthesis Inhibitors",
+  "format": "mnemonic",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "PHARM TUESDAY",
+      "headline": "Buy **AT 30**, CCEL at **50**",
+      "subtitle": "One mnemonic for every protein synthesis inhibitor question on NBME"
+    },
+    {
+      "type": "mnemonic",
+      "heading": "The ribosome mnemonic",
+      "mnemonic": "Buy AT 30, CCEL at 50",
+      "items": [
+        {"letter": "A", "meaning": "**Aminoglycosides** - 30S"},
+        {"letter": "T", "meaning": "**Tetracyclines** - 30S"},
+        {"letter": "C", "meaning": "**Chloramphenicol** - 50S"},
+        {"letter": "C", "meaning": "**Clindamycin** - 50S"},
+        {"letter": "E", "meaning": "**Erythromycin** (macrolides) - 50S"},
+        {"letter": "L", "meaning": "**Linezolid** - 50S"}
+      ]
+    },
+    {
+      "type": "table",
+      "heading": "Mechanism + classic toxicity",
+      "columns": ["Drug", "Mechanism", "Classic toxicity"],
+      "rows": [
+        ["Aminoglycosides", "30S: blocks initiation complex, mRNA misreading", "Nephrotoxicity, ototoxicity, NM blockade"],
+        ["Tetracyclines", "30S: blocks aminoacyl-tRNA attachment", "Teeth discoloration, photosensitivity"],
+        ["Chloramphenicol", "50S: blocks peptidyltransferase", "Aplastic anemia, gray baby syndrome"],
+        ["Clindamycin", "50S: blocks peptide transfer (translocation)", "**C. difficile** colitis"],
+        ["Macrolides", "50S (23S rRNA): blocks translocation", "QT prolongation, GI motility, cholestasis"],
+        ["Linezolid", "50S: prevents initiation complex", "Myelosuppression, **serotonin syndrome**"]
+      ]
+    },
+    {
+      "type": "bullets",
+      "heading": "Resistance quick hits",
+      "bullets": [
+        "**Aminoglycosides**: bacterial transferases inactivate the drug (acetylation, phosphorylation, adenylation)",
+        "**Tetracyclines**: ↓ uptake or ↑ efflux via plasmid-encoded pumps",
+        "**Chloramphenicol**: plasmid-encoded acetyltransferase",
+        "**Macrolides**: methylation of the 23S rRNA binding site",
+        "**Linezolid**: point mutation of ribosomal RNA"
+      ]
+    },
+    {
+      "type": "pearl",
+      "variant": "trap",
+      "heading": "Classic NBME trap",
+      "text": "Aminoglycosides need **oxygen** to enter bacteria, so they do not work against anaerobes.",
+      "detail": "Cell wall inhibitors (e.g. beta-lactams) increase their entry, which is why the combination is synergistic."
+    },
+    {
+      "type": "question",
+      "stem": "A 68-year-old man receiving an IV antibiotic for vancomycin-resistant Enterococcus faecium bacteremia is started on sertraline for depression. Two days later he develops agitation, hyperthermia, diaphoresis and inducible clonus. Which best describes the mechanism of his antibiotic?",
+      "options": [
+        "Binds 30S subunit and causes mRNA misreading",
+        "Binds 30S subunit and blocks aminoacyl-tRNA attachment",
+        "Binds 50S subunit and prevents formation of the initiation complex",
+        "Binds 50S subunit and inhibits peptidyltransferase",
+        "Binds 50S subunit and blocks translocation"
+      ]
+    },
+    {
+      "type": "answer",
+      "correct": "C",
+      "answer_text": "Linezolid: 50S, prevents initiation complex",
+      "explanation": "Linezolid (used for VRE and MRSA) binds the 50S subunit and prevents formation of the initiation complex. It is also a weak **MAO inhibitor**, so adding an SSRI can trigger **serotonin syndrome**.",
+      "distractors": [
+        "A: aminoglycosides",
+        "B: tetracyclines",
+        "D: chloramphenicol",
+        "E: macrolides and clindamycin"
+      ]
+    },
+    {"type": "cta"}
+  ],
+  "caption": {
+    "hook": "Protein synthesis inhibitors for USMLE Step 1: 30S vs 50S antibiotics in one mnemonic",
+    "body": [
+      "30S: aminoglycosides and tetracyclines. 50S: chloramphenicol, clindamycin, macrolides and linezolid.",
+      "NBME loves pairing the mechanism with the classic toxicity in one vignette, so learn them together.",
+      "Linezolid + SSRI = serotonin syndrome. Chloramphenicol = gray baby syndrome. Clindamycin = C. difficile."
+    ],
+    "question": "Did you get the vignette on slide 6 right? Drop your answer below"
+  },
+  "hashtags": ["#pharmacology", "#antibiotics", "#medstudent"],
+  "story": {
+    "headline": "Buy **AT 30**, CCEL at **50**",
+    "teaser": "One mnemonic for every protein synthesis inhibitor question. Can you crack today's vignette?"
+  }
+}

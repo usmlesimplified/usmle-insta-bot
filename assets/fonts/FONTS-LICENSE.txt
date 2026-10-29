@@ -1,0 +1,5 @@
+Poppins (Regular, Medium, Bold, Italic) - Copyright 2020 The Poppins Project Authors.
+Licensed under the SIL Open Font License, Version 1.1 (https://openfontlicense.org).
+
+DejaVu Sans (used only for symbols such as arrows that Poppins lacks) - Bitstream Vera / DejaVu fonts license
+(https://dejavu-fonts.github.io/License.html). Free to use, embed and redistribute.
