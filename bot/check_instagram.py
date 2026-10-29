@@ -16,8 +16,10 @@ def main() -> int:
                        host=cfg.get("ig_api_host", "graph.facebook.com"), username=cfg["handle"])
         uid = ig.user_id
         info = ig._call("GET", uid, params={"fields": "username,followers_count,media_count"})
-        print(f"OK: connected to @{info.get('username')} (id {uid}), "
-              f"{info.get('followers_count', '?')} followers, {info.get('media_count', '?')} posts")
+        msg = (f"OK: connected to @{info.get('username')} (id {uid}), "
+               f"{info.get('followers_count', '?')} followers, {info.get('media_count', '?')} posts")
+        print(msg)
+        print(f"::notice title=Instagram check::{msg}")
         try:
             print(f"Publishing quota: {ig.publishing_quota()}")
         except IGError as e:
@@ -25,6 +27,7 @@ def main() -> int:
         return 0
     except IGError as e:
         print(f"FAILED: {e}")
+        print(f"::error title=Instagram check::{str(e)[:500]}")
         return 1
 
 

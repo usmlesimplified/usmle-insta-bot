@@ -3,6 +3,11 @@ name: Check Instagram connection
 # Read-only: confirms IG_ACCESS_TOKEN works. Publishes nothing.
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/check-instagram.yml
+      - bot/check_instagram.py
+      - bot/instagram.py
 
 permissions:
   contents: read
