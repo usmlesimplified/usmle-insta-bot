@@ -1,0 +1,18 @@
+[
+  {
+    "round": 1,
+    "verdict": "fix",
+    "issues": [
+      "Internal contradiction: the pearl, the distractor E text and the caption say anemia does not shift the curve. The bullets slide lists chronic anemia as a cause of a right shift, through raised 2,3-BPG. The wording now says that low Hb itself does not shift the curve, and that chronic anemia can raise 2,3-BPG.",
+      "Caption says 'PaO2 and pulse oximetry look falsely normal'. PaO2 is truly normal in CO poisoning. Only the pulse oximetry reading is falsely normal. The caption is reworded.",
+      "The vignette, the answer letter (B), the CADET letter mapping, the table rows against their column headers, the HbF, methemoglobin, Bohr/Haldane, myoglobin and banked-blood facts, and the character limits all check out."
+    ],
+    "sources": []
+  },
+  {
+    "round": 2,
+    "verdict": "pass",
+    "issues": [],
+    "sources": []
+  }
+]

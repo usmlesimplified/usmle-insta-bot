@@ -1,0 +1,63 @@
+{
+  "chosen_id": "physiology-oxygen-hemoglobin-dissociation-curve",
+  "topic": "Oxygen-hemoglobin dissociation curve: right vs left shifts, P50, and the classic NBME traps",
+  "discipline": "Physiology",
+  "why_today": "I found no October 2026 news tied to any candidate, so I picked the candidate with the best mix of yield (3/3) and visual, quiz-friendly engagement.",
+  "format": "quiz",
+  "angle": "A one-vignette quiz asking which finding does NOT shift the curve right, with CO poisoning and anemia as the distractors. The answer explanation walks through CADET, P50, and why CO makes things worse by shifting the curve left while also lowering O2 content.",
+  "key_facts": [
+    "The curve is sigmoidal because of positive cooperativity: Hb binds O2 as a tetramer, with a T (tense, low-affinity) to R (relaxed, high-affinity) transition.",
+    "Normal P50 is about 26 mmHg, the PO2 at which Hb is 50% saturated.",
+    "A right shift means higher P50, lower affinity, and easier O2 unloading to tissues.",
+    "A left shift means lower P50, higher affinity, and harder unloading.",
+    "Right-shift causes follow CADET face right: CO2 (increased), Acid (low pH, the Bohr effect), 2,3-BPG (increased), Exercise, Temperature (increased).",
+    "Left-shift causes are the opposite: low CO2, high pH, low 2,3-BPG, low temperature, HbF, CO, and methemoglobin.",
+    "HbF (α2γ2) binds 2,3-BPG poorly, so it has higher O2 affinity than HbA. This favors O2 transfer from mother to fetus.",
+    "CO has about 200-fold greater affinity for Hb than O2. It lowers O2 content and shifts the curve left, so it impairs unloading. Pulse oximetry reads falsely normal and PaO2 stays normal.",
+    "Methemoglobin has Fe3+ instead of Fe2+, shifts the curve left, and causes cyanosis with 'chocolate-brown' blood. Treat with methylene blue (and give nitrites/dapsone history).",
+    "The Bohr effect is the right shift from increased H+ or CO2 in metabolically active tissues. The Haldane effect is that deoxygenated Hb binds more CO2 and H+.",
+    "At high altitude, chronic hypoxia increases 2,3-BPG, which shifts the curve right. This helps unloading, and the shift is also seen in chronic lung disease and chronic anemia.",
+    "Stored banked blood is 2,3-BPG depleted, which shifts the curve left.",
+    "O2 content = (1.34 × Hb × SaO2) + (0.003 × PaO2). Anemia lowers content but not SaO2 or PaO2, and it does not shift the curve.",
+    "Myoglobin has a hyperbolic curve and is far to the left of Hb (higher affinity). It stores O2 and releases it only at very low PO2."
+  ],
+  "common_traps": [
+    "Mixing up the direction: a right shift means lower affinity, which unloads O2. The word 'right' sounds like 'better', but it isn't.",
+    "In CO poisoning, PaO2 and SpO2 look normal even though O2 content is low. The curve shifts left and becomes hyperbolic-looking.",
+    "Anemia lowers O2 content, but PaO2 and SaO2 stay normal and the curve doesn't shift.",
+    "Confusing the Bohr effect (H+ and CO2 reduce Hb's O2 affinity) with the Haldane effect (O2 binding reduces Hb's affinity for CO2 and H+).",
+    "Forgetting that HbF has a left-shifted curve because it binds 2,3-BPG poorly, not because of its own intrinsic affinity.",
+    "Remember the Hb curve is sigmoidal (cooperative) while myoglobin is hyperbolic."
+  ],
+  "mnemonic_ideas": [
+    "CADET, face Right: CO2, Acid, 2,3-BPG, Exercise, Temperature shift the curve right."
+  ],
+  "seo_keywords": [
+    "oxygen hemoglobin dissociation curve",
+    "oxygen dissociation curve shifts right vs left",
+    "cadet face right mnemonic",
+    "bohr effect vs haldane effect",
+    "p50 hemoglobin step 1",
+    "carbon monoxide poisoning oxygen dissociation curve",
+    "fetal hemoglobin oxygen affinity 2,3-bpg",
+    "usmle step 1 physiology respiratory"
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Oxygen%E2%80%93hemoglobin_dissociation_curve",
+      "title": "Oxygen–hemoglobin dissociation curve (Wikipedia)"
+    },
+    {
+      "url": "https://derangedphysiology.com/main/cicm-primary-exam/respiratory-system/Chapter-113/factors-which-influence-affinity-haemoglobin-oxygen",
+      "title": "Factors which influence the affinity of haemoglobin for oxygen (Deranged Physiology)"
+    },
+    {
+      "url": "https://getoncourse.ai/lessons/us-medical-pg/step-1/physiology/gas-exchange/oxygen-hemoglobin-dissociation-curve",
+      "title": "Oxygen-hemoglobin dissociation curve (Step 1 review, getoncourse.ai)"
+    },
+    {
+      "url": "https://www.lecturio.com/blog/2026-usmle-changes-step-1-2-ck-software-block-updates/",
+      "title": "2026 USMLE Changes: Step 1 & 2 CK Software & Block Updates (Lecturio)"
+    }
+  ]
+}

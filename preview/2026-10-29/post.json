@@ -1,0 +1,140 @@
+{
+  "title": "Oxygen-Hemoglobin Dissociation Curve",
+  "format": "quiz",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "PHYSIO THURSDAY",
+      "headline": "The **Curve** Shift NBME Loves to **Trap**",
+      "subtitle": "CO poisoning vs anemia: CADET, P50, and what each does to O2 delivery"
+    },
+    {
+      "type": "question",
+      "stem": "A 34-year-old woman is brought to the ED confused after being found in a home with a faulty space heater. She has headache and nausea. Pulse oximetry shows 98% on room air. PaO2 is 95 mmHg and hemoglobin is 13 g/dL. Which best describes the effect of her exposure on the oxygen-hemoglobin dissociation curve and O2 content?",
+      "options": [
+        "Right shift, decreased O2 content",
+        "Left shift, decreased O2 content",
+        "Left shift, normal O2 content",
+        "Right shift, normal O2 content",
+        "No shift, decreased O2 content"
+      ]
+    },
+    {
+      "type": "answer",
+      "correct": "B",
+      "answer_text": "Left shift, decreased O2 content (carbon monoxide poisoning)",
+      "explanation": "**CO** binds Hb with about 200-fold greater affinity than O2. It lowers O2 content AND shifts the curve **left** (lower P50), so the remaining O2 unloads poorly. PaO2 stays normal and pulse oximetry reads falsely normal.",
+      "distractors": [
+        "A: Right shift would ease unloading; CO does the opposite.",
+        "C: Content is low because CO occupies Hb binding sites.",
+        "D: Wrong direction, and content is not normal.",
+        "E: This is the acute anemia pattern: low content, no shift. CO also shifts the curve."
+      ]
+    },
+    {
+      "type": "mnemonic",
+      "heading": "What shifts the curve RIGHT?",
+      "mnemonic": "CADET, face Right",
+      "items": [
+        {
+          "letter": "C",
+          "meaning": "**CO2** increased"
+        },
+        {
+          "letter": "A",
+          "meaning": "**Acid** (low pH): the **Bohr effect**"
+        },
+        {
+          "letter": "D",
+          "meaning": "**2,3-BPG** increased (D for DPG)"
+        },
+        {
+          "letter": "E",
+          "meaning": "**Exercise**"
+        },
+        {
+          "letter": "T",
+          "meaning": "**Temperature** increased"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "heading": "Right shift vs left shift",
+      "columns": [
+        "Feature",
+        "Right shift",
+        "Left shift"
+      ],
+      "rows": [
+        [
+          "P50 (normal about 26 mmHg)",
+          "**↑** P50",
+          "**↓** P50"
+        ],
+        [
+          "Hb affinity for O2",
+          "Lower",
+          "Higher"
+        ],
+        [
+          "O2 unloading to tissue",
+          "Easier",
+          "Harder"
+        ],
+        [
+          "Typical causes",
+          "CADET; high altitude",
+          "Low CO2, high pH, low temperature, low 2,3-BPG"
+        ],
+        [
+          "Classic examples",
+          "Chronic hypoxia, exercise",
+          "**HbF**, **CO**, methemoglobin, banked blood"
+        ]
+      ]
+    },
+    {
+      "type": "pearl",
+      "variant": "trap",
+      "heading": "Anemia alone does not shift the curve",
+      "text": "**Anemia** lowers O2 content, but SaO2 and PaO2 stay normal and low Hb itself does not shift the curve. **CO** lowers content AND shifts it left.",
+      "detail": "Content = (1.34 x Hb x SaO2) + (0.003 x PaO2). Hb is the lever in anemia. Chronic anemia can raise 2,3-BPG (mild right shift)."
+    },
+    {
+      "type": "bullets",
+      "heading": "More high-yield curve facts",
+      "bullets": [
+        "**HbF** (α2γ2) binds 2,3-BPG poorly, so affinity is higher and O2 moves from mother to fetus",
+        "**Methemoglobin** (Fe3+) shifts the curve left; cyanosis with chocolate-brown blood; treat with methylene blue",
+        "**High altitude**: chronic hypoxia raises 2,3-BPG -> right shift; also chronic lung disease and chronic anemia",
+        "**Banked blood** is 2,3-BPG depleted, so the curve shifts left",
+        "**Bohr**: H+ and CO2 lower Hb affinity for O2. **Haldane**: deoxygenated Hb binds more CO2 and H+",
+        "**Myoglobin** is hyperbolic and left of Hb: it stores O2 and releases it only at very low PO2"
+      ]
+    },
+    {
+      "type": "cta"
+    }
+  ],
+  "caption": {
+    "hook": "Oxygen hemoglobin dissociation curve for USMLE Step 1: why CO poisoning shifts it left",
+    "body": [
+      "The oxygen dissociation curve shifts right vs left based on P50: right means higher P50, lower affinity, easier unloading. Left is the opposite.",
+      "CADET face right: CO2, Acid, 2,3-BPG, Exercise, Temperature. Know this mnemonic cold for Step 1 physiology.",
+      "Carbon monoxide poisoning shifts the curve left AND lowers O2 content, while PaO2 is normal and pulse oximetry reads falsely normal.",
+      "Anemia lowers O2 content but low Hb alone does not shift the curve. Fetal hemoglobin has higher O2 affinity because it binds 2,3-BPG poorly.",
+      "Bohr effect vs Haldane effect: Bohr is H+ and CO2 lowering O2 affinity; Haldane is deoxygenated Hb binding more CO2 and H+."
+    ],
+    "question": "Did you pick B? Which curve shift trips you up most: CO, HbF, or banked blood? Tell us below."
+  },
+  "hashtags": [
+    "#oxygendissociationcurve",
+    "#respiratoryphysiology",
+    "#bohreffect"
+  ],
+  "story": {
+    "headline": "CO or anemia: which shifts the curve?",
+    "teaser": "Test yourself with today's Physio Thursday vignette."
+  }
+}

@@ -1,0 +1,17 @@
+Oxygen hemoglobin dissociation curve for USMLE Step 1: why CO poisoning shifts it left
+
+The oxygen dissociation curve shifts right vs left based on P50: right means higher P50, lower affinity, easier unloading. Left is the opposite.
+CADET face right: CO2, Acid, 2,3-BPG, Exercise, Temperature. Know this mnemonic cold for Step 1 physiology.
+Carbon monoxide poisoning shifts the curve left AND lowers O2 content, while PaO2 is normal and pulse oximetry reads falsely normal.
+Anemia lowers O2 content but low Hb alone does not shift the curve. Fetal hemoglobin has higher O2 affinity because it binds 2,3-BPG poorly.
+Bohr effect vs Haldane effect: Bohr is H+ and CO2 lowering O2 affinity; Haldane is deoxygenated Hb binding more CO2 and H+.
+
+Did you pick B? Which curve shift trips you up most: CO, HbF, or banked blood? Tell us below. 👇
+
+📌 Save this for revision
+🔁 Share with your Step 1 study partner
+🩺 DM "STEP1" for 1:1 Step 1 mentoring
+
+Educational content for USMLE prep. Not medical advice.
+
+#usmlestep1 #usmle #oxygendissociationcurve #respiratoryphysiology #bohreffect
