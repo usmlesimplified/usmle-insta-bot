@@ -33,13 +33,17 @@ don't depend on other chats.
 - 2026-10-29: owner chose NOT to pay for the API. Claude runs on his Claude subscription via `claude setup-token` (token valid 1 year). Never run the CLI with `--bare` (it ignores the OAuth token).
 
 ## Status (2026-10-29)
-- Code complete; 22 offline tests pass (`python -m pytest -q`). Not yet run against the real Claude or Instagram APIs.
+- Code complete; 22 offline tests pass (`python -m pytest -q`). Real Claude (subscription) + Instagram read access verified 2026-10-29; nothing published yet.
 - Next: owner completes one-time setup in README (Meta app token, Claude subscription token via `claude setup-token`, public GitHub repo, secrets),
   then a Dry run from GitHub Actions, then go live.
 - Setup progress: Instagram Professional done; GitHub repo `usmlesimplified/usmle-insta-bot` (public) created and code pushed;
   Claude GitHub App installed on this repo. Meta business portfolio "Usmle.simplified" and Meta app "usmle simplified" (id 2109383933004282) created.
   Instagram tester accepted; secrets IG_ACCESS_TOKEN + IG_USER_ID saved; `Check Instagram connection` workflow
-  passed (connected to @usmle.simplified). Pending: `claude setup-token` -> CLAUDE_CODE_OAUTH_TOKEN secret, first dry run.
+  passed (connected to @usmle.simplified). CLAUDE_CODE_OAUTH_TOKEN secret added (owner installed Claude Code on Windows).
+  2026-10-29 first preview run succeeded end-to-end on the subscription (Physio Thursday: O2-Hb dissociation curve, 8 slides,
+  fact-check fixed 2 issues then passed). Waiting for owner's go-live approval.
+- `preview.yml`: dry run that saves slides/caption/brief/review to the `preview` branch; runs by hand or when
+  `triggers/preview.txt` changes (optional `topic:` line). Read results with `git fetch origin preview`.
 - `check-instagram.yml` runs read-only on push of its own files or by hand; result shows as a run annotation.
 - Ideas for later: Reels (video pipeline), logo at `assets/logo.png`, weekly performance report from Instagram insights.
 
