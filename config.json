@@ -10,6 +10,7 @@
   "factcheck_max_searches": 5,
 
   "graph_api_version": "v26.0",
+  "ig_api_host": "graph.facebook.com",
   "post_story": true,
   "mark_ai_generated": false,
 

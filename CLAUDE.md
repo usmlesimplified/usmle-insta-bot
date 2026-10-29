@@ -20,8 +20,8 @@ don't depend on other chats.
 | `bot/render.py` | Pillow renderer: 1080x1350 slides + 1080x1920 story, auto-sizing text |
 | `bot/caption.py` | SEO caption, exactly 5 hashtags (Instagram cap since Dec 2025), alt text |
 | `bot/hosting.py` | Images hosted on the repo's `media` branch (one orphan commit per day, so repo doesn't grow) |
-| `bot/instagram.py` | Instagram API with Instagram Login (graph.instagram.com, v26.0), no-duplicate publish, token refresh |
-| `.github/workflows/` | `daily-post.yml` (13:47 UTC = 6:47 PM PKT) and `refresh-token.yml` (weekly) |
+| `bot/instagram.py` | Instagram API with **Unified Login** (graph.facebook.com, v26.0, system-user token that never expires; IG id from `/me/assigned_instagram_accounts`), no-duplicate publish. `ig_api_host` can switch to the old graph.instagram.com setup |
+| `.github/workflows/` | `daily-post.yml` (13:47 UTC = 6:47 PM PKT); `refresh-token.yml` is manual-only (old Instagram Login setup) |
 | `config.json` | Brand, colours, model, hashtags, CTA lines |
 | `data/history.json` | Log of what was posted (drives the cooldown) |
 
@@ -29,6 +29,7 @@ don't depend on other chats.
 - Hosting via public GitHub repo + `media` branch (Instagram only accepts public image URLs).
 - Publish only on a clean fact-check "pass"; otherwise skip the day.
 - Carousel + story daily. Reels are not built yet.
+- 2026-10-29: Meta no longer offers "API setup with Instagram login" for new apps; switched to Unified Login. GH_PAT secret not needed.
 - 2026-10-29: owner chose NOT to pay for the API. Claude runs on his Claude subscription via `claude setup-token` (token valid 1 year). Never run the CLI with `--bare` (it ignores the OAuth token).
 
 ## Status (2026-10-29)
@@ -36,8 +37,9 @@ don't depend on other chats.
 - Next: owner completes one-time setup in README (Meta app token, Claude subscription token via `claude setup-token`, public GitHub repo, secrets),
   then a Dry run from GitHub Actions, then go live.
 - Setup progress: Instagram Professional done; GitHub repo `usmlesimplified/usmle-insta-bot` (public) created and code pushed;
-  Claude GitHub App installed on this repo. Pending: Meta business portfolio + app + Instagram token, `claude setup-token`,
-  repo secrets (CLAUDE_CODE_OAUTH_TOKEN, IG_ACCESS_TOKEN, IG_USER_ID, GH_PAT), first dry run.
+  Claude GitHub App installed on this repo. Meta business portfolio "Usmle.simplified" and Meta app "usmle simplified" (id 2109383933004282) created.
+  Pending: Instagram tester invite + token, `claude setup-token`, repo secrets (CLAUDE_CODE_OAUTH_TOKEN,
+  IG_ACCESS_TOKEN, optional IG_USER_ID), first dry run.
 - Ideas for later: Reels (video pipeline), logo at `assets/logo.png`, weekly performance report from Instagram insights.
 
 ## Working conventions

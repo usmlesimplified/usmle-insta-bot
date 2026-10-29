@@ -1,4 +1,9 @@
-"""Instagram API with Instagram Login (graph.instagram.com): carousel + story publishing, token refresh."""
+"""Instagram content publishing: carousel + story.
+
+Default setup is the Instagram API with Unified Login (graph.facebook.com) and a Business Integration System
+User Access Token, which does not expire. The older Instagram Login setup (graph.instagram.com, 60-day tokens)
+still works by setting `ig_api_host` to "graph.instagram.com" in config.json.
+"""
 
 import logging
 import time
@@ -6,7 +11,8 @@ import time
 import requests
 
 log = logging.getLogger(__name__)
-HOST = "https://graph.instagram.com"
+HOST = "https://graph.facebook.com"
+IG_LOGIN_HOST = "https://graph.instagram.com"
 
 
 class IGError(RuntimeError):
@@ -15,7 +21,8 @@ class IGError(RuntimeError):
 
 class Instagram:
     def __init__(self, token: str, user_id: str | None = None, version: str = "v26.0",
-                 session: requests.Session | None = None, poll_interval: float = 5.0):
+                 session: requests.Session | None = None, poll_interval: float = 5.0,
+                 host: str = "graph.facebook.com", username: str | None = None):
         if not token:
             raise IGError("IG_ACCESS_TOKEN is not set")
         self.token = token
@@ -23,10 +30,12 @@ class Instagram:
         self.s = session or requests.Session()
         self.poll_interval = poll_interval
         self._user_id = user_id
+        self.host = "https://" + host.replace("https://", "").strip("/")
+        self.username = (username or "").lstrip("@").lower() or None
 
     # ---- low level
     def _url(self, path: str) -> str:
-        return f"{HOST}/{self.version}/{path.lstrip('/')}"
+        return f"{self.host}/{self.version}/{path.lstrip('/')}"
 
     def _call(self, method: str, path: str, *, params=None, json=None, retries: int = 3):
         headers = {"Authorization": f"Bearer {self.token}"}
@@ -55,9 +64,20 @@ class Instagram:
     @property
     def user_id(self) -> str:
         if not self._user_id:
-            me = self._call("GET", "me", params={"fields": "user_id,username"})
-            self._user_id = str(me.get("user_id") or me.get("id"))
-            log.info("Publishing as @%s (%s)", me.get("username"), self._user_id)
+            if self.host == IG_LOGIN_HOST:
+                me = self._call("GET", "me", params={"fields": "user_id,username"})
+                self._user_id = str(me.get("user_id") or me.get("id"))
+                log.info("Publishing as @%s (%s)", me.get("username"), self._user_id)
+            else:
+                # Unified Login: /me is the system user; the IG accounts shared with the app are listed here.
+                data = self._call("GET", "me/assigned_instagram_accounts", params={"fields": "id,username"})
+                accounts = data.get("data") or []
+                if not accounts:
+                    raise IGError("no Instagram account is shared with this token")
+                pick = next((a for a in accounts if self.username and str(a.get("username", "")).lower() == self.username),
+                            accounts[0])
+                self._user_id = str(pick["id"])
+                log.info("Publishing as @%s (%s)", pick.get("username"), self._user_id)
         return self._user_id
 
     def publishing_quota(self) -> dict:
@@ -144,9 +164,10 @@ class Instagram:
 
 
 def refresh_long_lived_token(token: str, session: requests.Session | None = None) -> dict:
-    """Extend a long-lived Instagram token by another 60 days (token must be >24h old)."""
+    """Instagram Login setup only: extend a long-lived Instagram token by another 60 days (token must be >24h old).
+    Not needed for Unified Login system-user tokens, which don't expire."""
     s = session or requests.Session()
-    r = s.get(f"{HOST}/refresh_access_token",
+    r = s.get(f"{IG_LOGIN_HOST}/refresh_access_token",
               params={"grant_type": "ig_refresh_token", "access_token": token}, timeout=60)
     data = r.json() if r.content else {}
     if r.status_code != 200 or "access_token" not in data:

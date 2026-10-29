@@ -39,16 +39,18 @@ is no API bill. Each daily post uses a small part of your plan's usage limits.
 *(Optional alternative: an API key from the Claude Console in `ANTHROPIC_API_KEY`, billed per use. If both are
 set, the subscription token is used.)*
 
-### 3. Instagram API token (Meta developer app)
-1. Go to <https://developers.facebook.com> → **My Apps → Create app** → choose the use case for managing
-   content on **Instagram** (Business app type).
-2. In the app dashboard open **Instagram → API setup with Instagram business login**.
-3. Under *Generate access tokens* click **Add account** and log in as **@usmle.simplified**. Approve the
-   permissions `instagram_business_basic` and `instagram_business_content_publish`.
-   - If it asks you to add the account as a tester: *App roles → Roles → Instagram Testers*, then accept the
-     invite in the Instagram app (Settings → Website permissions → Apps and websites → Tester invites).
-4. Click **Generate token**. Copy the **token** and the **Instagram account ID** shown next to it.
-   The app can stay in Development mode because it only posts to your own account.
+### 3. Instagram API token (Meta developer app, Unified Login)
+New Meta apps use the **Instagram API with Unified Login** (graph.facebook.com). Its token is a Business
+Integration System User Access Token, which **does not expire**, so no weekly refresh is needed.
+1. Create a **business portfolio** in Meta Business Suite (no dots or special characters in the name).
+2. <https://developers.facebook.com> → **My Apps → Create app** → add the use case
+   **Manage messaging & content on Instagram** → connect the business portfolio → **Create app**.
+3. **Use cases → Manage messaging & content on Instagram → Customize → API setup with Unified login.**
+4. Under **2. Generate access tokens** → **Add account** → log in as **@usmle.simplified** and accept the
+   Instagram Tester invite (Instagram web: Settings → Website permissions → Apps and websites → Tester invites).
+5. **Generate token**, complete the login, copy the token (shown only once). The app can stay in Development
+   mode because it only posts to your own account.
+6. `IG_USER_ID` is optional: the bot finds the account via `/me/assigned_instagram_accounts`.
 
 ### 4. GitHub repository
 1. Create a **public** repository (e.g. `usmle-insta-bot`). Public is required: Instagram downloads the
@@ -69,8 +71,7 @@ set, the subscription token is used.)*
 |---|---|
 | `CLAUDE_CODE_OAUTH_TOKEN` | the token from `claude setup-token` (step 2) |
 | `IG_ACCESS_TOKEN` | the Instagram token from step 3 |
-| `IG_USER_ID` | the Instagram account ID from step 3 (optional, auto-detected if missing) |
-| `GH_PAT` | a GitHub fine-grained token: *Settings → Developer settings → Fine-grained tokens*, access to **this repo only**, permission **Secrets: Read and write**. Used only to save the refreshed Instagram token every week. |
+| `IG_USER_ID` | the Instagram account ID (optional, auto-detected if missing) |
 
 Also check *Settings → Actions → General → Workflow permissions* is **Read and write**.
 
@@ -79,7 +80,6 @@ Also check *Settings → Actions → General → Workflow permissions* is **Read
    When it finishes, open the run and download the **post-…** artifact: slides, caption, research brief and
    the fact-check log. Nothing is published.
 2. Run it again **without** Dry run to publish your first post.
-3. Run **Refresh Instagram token** once by hand to confirm the token refresh works.
 
 From then on it posts every day at **6:47 PM Pakistan time** on its own.
 

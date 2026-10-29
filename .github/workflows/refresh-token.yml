@@ -1,9 +1,9 @@
 name: Refresh Instagram token
 
-# Instagram long-lived tokens last 60 days. Refreshing weekly keeps the bot running forever.
+# Only for the older "Instagram Login" setup (ig_api_host = graph.instagram.com), whose tokens last 60 days.
+# The default Unified Login token never expires, so this runs only when started by hand.
+# To use it with Instagram Login, add back:  schedule: [{cron: "23 3 * * 1"}]  and a GH_PAT secret.
 on:
-  schedule:
-    - cron: "23 3 * * 1"   # every Monday 03:23 UTC
   workflow_dispatch:
 
 permissions:

@@ -166,8 +166,9 @@ class FakeGraph:
             return FakeResp(200, {"data": [{"id": f"m-{self.published[-1]}"}]})
         if method == "GET" and path.endswith("content_publishing_limit"):
             return FakeResp(200, {"data": [{"quota_usage": 0}]})
-        if method == "GET" and path == "me":
-            return FakeResp(200, {"user_id": "999", "username": "usmle.simplified"})
+        if method == "GET" and path == "me/assigned_instagram_accounts":
+            assert url.startswith("https://graph.facebook.com/")
+            return FakeResp(200, {"data": [{"id": "111", "username": "other"}, {"id": "999", "username": "usmle.simplified"}]})
         if method == "GET" and (params or {}).get("fields", "").startswith("status"):
             return FakeResp(200, {"status_code": self.containers[path]})
         if method == "GET" and (params or {}).get("fields") == "permalink":
@@ -178,8 +179,9 @@ class FakeGraph:
 def test_instagram_carousel_flow():
     from bot.instagram import Instagram
     g = FakeGraph()
-    ig = Instagram("TOKEN", None, "v26.0", session=g, poll_interval=0)
+    ig = Instagram("TOKEN", None, "v26.0", session=g, poll_interval=0, username="@usmle.simplified")
     media, link = ig.publish_carousel([f"https://x/{i}.jpg" for i in range(3)], ["alt"] * 3, "caption")
+    assert ig.user_id == "999"  # picked the matching handle from the shared accounts
     assert media == "m-c4" and link.endswith("/m-c4/")
     creates = [c for c in g.calls if c[0] == "POST" and c[1].endswith("/media")]
     assert all(c[2]["is_carousel_item"] and c[2]["alt_text"] == "alt" for c in creates[:3])

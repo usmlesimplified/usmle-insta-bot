@@ -142,7 +142,8 @@ def run(argv=None) -> int:
     slide_urls = urls[: len(paths)]
     story_url = urls[len(paths)] if story_path else None
 
-    ig = Instagram(cfg.ig_access_token, cfg.ig_user_id, cfg["graph_api_version"])
+    ig = Instagram(cfg.ig_access_token, cfg.ig_user_id, cfg["graph_api_version"],
+                   host=cfg.get("ig_api_host", "graph.facebook.com"), username=cfg["handle"])
     try:
         quota = ig.publishing_quota()
         log.info("Publishing quota: %s", quota)
