@@ -38,8 +38,9 @@ don't depend on other chats.
   then a Dry run from GitHub Actions, then go live.
 - Setup progress: Instagram Professional done; GitHub repo `usmlesimplified/usmle-insta-bot` (public) created and code pushed;
   Claude GitHub App installed on this repo. Meta business portfolio "Usmle.simplified" and Meta app "usmle simplified" (id 2109383933004282) created.
-  Pending: Instagram tester invite + token, `claude setup-token`, repo secrets (CLAUDE_CODE_OAUTH_TOKEN,
-  IG_ACCESS_TOKEN, optional IG_USER_ID), first dry run.
+  Instagram tester accepted; secrets IG_ACCESS_TOKEN + IG_USER_ID saved; `Check Instagram connection` workflow
+  passed (connected to @usmle.simplified). Pending: `claude setup-token` -> CLAUDE_CODE_OAUTH_TOKEN secret, first dry run.
+- `check-instagram.yml` runs read-only on push of its own files or by hand; result shows as a run annotation.
 - Ideas for later: Reels (video pipeline), logo at `assets/logo.png`, weekly performance report from Instagram insights.
 
 ## Working conventions
