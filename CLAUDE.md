@@ -35,7 +35,9 @@ don't depend on other chats.
 - Code complete; 22 offline tests pass (`python -m pytest -q`). Not yet run against the real Claude or Instagram APIs.
 - Next: owner completes one-time setup in README (Meta app token, Claude subscription token via `claude setup-token`, public GitHub repo, secrets),
   then a Dry run from GitHub Actions, then go live.
-- Setup progress: step 1 (Instagram Professional) done.
+- Setup progress: Instagram Professional done; GitHub repo `usmlesimplified/usmle-insta-bot` (public) created and code pushed;
+  Claude GitHub App installed on this repo. Pending: Meta business portfolio + app + Instagram token, `claude setup-token`,
+  repo secrets (CLAUDE_CODE_OAUTH_TOKEN, IG_ACCESS_TOKEN, IG_USER_ID, GH_PAT), first dry run.
 - Ideas for later: Reels (video pipeline), logo at `assets/logo.png`, weekly performance report from Instagram insights.
 
 ## Working conventions
